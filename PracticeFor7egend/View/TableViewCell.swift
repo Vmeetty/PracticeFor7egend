@@ -23,11 +23,15 @@ class TableViewCell: UITableViewCell {
         }
     }
     
-//
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
+    @objc func detailsTaped() {
+        print("Open Detail View")
+    }
 //
 //    override func setSelected(_ selected: Bool, animated: Bool) {
 //        super.setSelected(selected, animated: animated)
@@ -72,6 +76,10 @@ class TableViewCell: UITableViewCell {
         firstUserImageView.layer.borderColor = UIColor.white.cgColor
         secondUserImageView.layer.borderWidth = 1
         secondUserImageView.layer.borderColor = UIColor.white.cgColor
+        
+        let tapGR = UIGestureRecognizer(target: self, action: #selector(detailsTaped))
+        pictureImageView.addGestureRecognizer(tapGR)
+        pictureImageView.isUserInteractionEnabled = true
     }
     
 }

@@ -17,6 +17,7 @@
 		CEDB30B028391128001AA98E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30AF28391128001AA98E /* Manager.swift */; };
 		CEDB30B228391E8F001AA98E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30B128391E8F001AA98E /* TableViewCell.swift */; };
 		CEDB30B428392A96001AA98E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30B328392A96001AA98E /* Constants.swift */; };
+		CEDB30B828395021001AA98E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30B728395021001AA98E /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		CEDB30AF28391128001AA98E /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		CEDB30B128391E8F001AA98E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CEDB30B328392A96001AA98E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CEDB30B728395021001AA98E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				CEDB30B628393480001AA98E /* Controller */,
 				CEDB30B528393479001AA98E /* View */,
 				CEDB30B328392A96001AA98E /* Constants.swift */,
+				CEDB30B728395021001AA98E /* Service.swift */,
 				CEDB309C2838F2EC001AA98E /* Main.storyboard */,
 				CEDB309F2838F2EE001AA98E /* Assets.xcassets */,
 				CEDB30A12838F2EE001AA98E /* LaunchScreen.storyboard */,
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDB309B2838F2EC001AA98E /* FeedViewController.swift in Sources */,
+				CEDB30B828395021001AA98E /* Service.swift in Sources */,
 				CEDB30B028391128001AA98E /* Manager.swift in Sources */,
 				CEDB30972838F2EC001AA98E /* AppDelegate.swift in Sources */,
 				CEDB30992838F2EC001AA98E /* SceneDelegate.swift in Sources */,

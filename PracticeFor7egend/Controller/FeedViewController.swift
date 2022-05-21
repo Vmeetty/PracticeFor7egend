@@ -21,6 +21,10 @@ class FeedViewController: UIViewController {
         tableView.dataSource = self
         
     }
+    
+    @objc func detailsTaped() {
+        print("Open Detail View")
+    }
 
 
 }
@@ -48,6 +52,10 @@ extension FeedViewController: UITableViewDataSource {
             return cell
         }
         cell.card = cards[indexPath.row]
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(detailsTaped))
+        cell.pictureImageView.addGestureRecognizer(tapGR)
+        cell.pictureImageView.isUserInteractionEnabled = true
         
         return cell
     }
