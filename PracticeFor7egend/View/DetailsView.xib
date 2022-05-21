@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailsView" customModule="PracticeFor7egend" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -124,6 +124,15 @@
                 <constraint firstItem="Tjh-nl-Hjc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xQI-2O-Heb"/>
                 <constraint firstItem="kdH-2P-TN8" firstAttribute="top" secondItem="iGE-Fe-DAE" secondAttribute="bottom" constant="8" symbolic="YES" id="za8-jb-HGG"/>
             </constraints>
+            <connections>
+                <outlet property="backgroundImageView" destination="Tjh-nl-Hjc" id="o1T-ai-2F3"/>
+                <outlet property="boldDescriptionLabel" destination="k7M-2g-98o" id="BId-Kg-K99"/>
+                <outlet property="cityLabel" destination="JeU-KG-Tdc" id="dAv-Yo-Yg3"/>
+                <outlet property="descriptionLabel" destination="op9-va-VMg" id="b0C-pP-vG9"/>
+                <outlet property="iconImageView" destination="DpA-DD-ZMw" id="WH4-Td-PqH"/>
+                <outlet property="timingLabel" destination="kdH-2P-TN8" id="5Ed-E1-zAJ"/>
+                <outlet property="titleLabel" destination="iGE-Fe-DAE" id="shI-M2-clJ"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="72.991071428571431"/>
         </view>
     </objects>

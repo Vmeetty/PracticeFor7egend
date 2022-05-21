@@ -17,8 +17,9 @@
 		CEDB30B028391128001AA98E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30AF28391128001AA98E /* Manager.swift */; };
 		CEDB30B228391E8F001AA98E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30B128391E8F001AA98E /* TableViewCell.swift */; };
 		CEDB30B428392A96001AA98E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30B328392A96001AA98E /* Constants.swift */; };
-		CEDB30BB28395788001AA98E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30BA28395788001AA98E /* CardView.swift */; };
-		CEDB30BD28395799001AA98E /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDB30BC28395799001AA98E /* CardView.xib */; };
+		CEDB30BB28395788001AA98E /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30BA28395788001AA98E /* DetailsView.swift */; };
+		CEDB30BD28395799001AA98E /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDB30BC28395799001AA98E /* DetailsView.xib */; };
+		CEDB30BF2839AEC6001AA98E /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB30BE2839AEC5001AA98E /* Details.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +35,9 @@
 		CEDB30AF28391128001AA98E /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		CEDB30B128391E8F001AA98E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CEDB30B328392A96001AA98E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CEDB30BA28395788001AA98E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		CEDB30BC28395799001AA98E /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		CEDB30BA28395788001AA98E /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		CEDB30BC28395799001AA98E /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
+		CEDB30BE2839AEC5001AA98E /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			children = (
 				CEDB30AF28391128001AA98E /* Manager.swift */,
 				CEDB30AA28390EC5001AA98E /* Card.swift */,
+				CEDB30BE2839AEC5001AA98E /* Details.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -94,8 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				CEDB309C2838F2EC001AA98E /* Main.storyboard */,
-				CEDB30BC28395799001AA98E /* CardView.xib */,
-				CEDB30BA28395788001AA98E /* CardView.swift */,
+				CEDB30BC28395799001AA98E /* DetailsView.xib */,
+				CEDB30BA28395788001AA98E /* DetailsView.swift */,
 				CEDB30B128391E8F001AA98E /* TableViewCell.swift */,
 			);
 			path = View;
@@ -177,7 +180,7 @@
 			files = (
 				CEDB30A32838F2EE001AA98E /* LaunchScreen.storyboard in Resources */,
 				CEDB30A02838F2EE001AA98E /* Assets.xcassets in Resources */,
-				CEDB30BD28395799001AA98E /* CardView.xib in Resources */,
+				CEDB30BD28395799001AA98E /* DetailsView.xib in Resources */,
 				CEDB309E2838F2EC001AA98E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,8 +197,9 @@
 				CEDB30972838F2EC001AA98E /* AppDelegate.swift in Sources */,
 				CEDB30992838F2EC001AA98E /* SceneDelegate.swift in Sources */,
 				CEDB30B228391E8F001AA98E /* TableViewCell.swift in Sources */,
+				CEDB30BF2839AEC6001AA98E /* Details.swift in Sources */,
 				CEDB30AB28390EC5001AA98E /* Card.swift in Sources */,
-				CEDB30BB28395788001AA98E /* CardView.swift in Sources */,
+				CEDB30BB28395788001AA98E /* DetailsView.swift in Sources */,
 				CEDB30B428392A96001AA98E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

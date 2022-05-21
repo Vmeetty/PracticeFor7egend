@@ -7,8 +7,11 @@
 
 import UIKit
 
+protocol TableViewCellDelegate: AnyObject {
+    func detailsPressed(indexPath: IndexPath)
+}
+
 class TableViewCell: UITableViewCell {
-    
     
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var topImageView: UIImageView!
@@ -17,6 +20,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var firstUserImageView: UIImageView!
     @IBOutlet weak var secondUserImageView: UIImageView!
     
+    weak var delegate: TableViewCellDelegate?
+    var indexPath: IndexPath!
     var card: Card! {
         didSet {
             updateUI()
@@ -26,18 +31,15 @@ class TableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(detailsTaped))
+        pictureImageView.addGestureRecognizer(tapGR)
+        pictureImageView.isUserInteractionEnabled = true
     }
     
+    
     @objc func detailsTaped() {
-        print("Open Detail View")
+        delegate?.detailsPressed(indexPath: indexPath)
     }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     
     
     private func updateUI() {
