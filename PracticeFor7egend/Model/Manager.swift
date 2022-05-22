@@ -101,23 +101,7 @@ struct Manager {
         
         return cards
     }
-    
 
-    
-    
-//    func getCard(title: String, descrip: String, image: String, user1: String?, user2: String?) -> Card {
-//        let imageName = UIImage(systemName: image)!
-//        var userImage1: UIImage? = nil
-//        var userImage2: UIImage? = nil
-//        if let str = user1 {
-//           userImage1 = UIImage(named: str)
-//        }
-//        if let str = user2 {
-//            userImage2 = UIImage(named: str)
-//        }
-//        let card = Card(title: title, description: descrip, topImage: imageName, user1: userImage1, user2: userImage2)
-//        return card
-//    }
     
     
 }

@@ -34,8 +34,5 @@ struct Configure {
         return detailView
     }
     
-//    private func fetchDetails() -> Details {
-//
-//    }
-    
+
 }

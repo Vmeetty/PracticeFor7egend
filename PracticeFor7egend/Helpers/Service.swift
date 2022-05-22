@@ -12,6 +12,7 @@ struct Service {
     
     static var shared = Service()
     
+    
     func animateCellsFor(tableView: UITableView, by gesture: UIPanGestureRecognizer) {
         guard gesture.state == .changed else { return }
 
