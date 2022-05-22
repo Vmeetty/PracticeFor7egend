@@ -39,13 +39,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7M-2g-98o">
-                            <rect key="frame" x="11" y="49" width="392" height="22"/>
+                            <rect key="frame" x="30" y="49" width="354" height="22"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="op9-va-VMg">
-                            <rect key="frame" x="11" y="75.5" width="392" height="21.5"/>
+                            <rect key="frame" x="30" y="75.5" width="354" height="21.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -53,12 +53,12 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="k7M-2g-98o" firstAttribute="leading" secondItem="e4x-eL-wif" secondAttribute="leading" constant="11" id="GGF-cr-ARh"/>
-                        <constraint firstAttribute="trailing" secondItem="k7M-2g-98o" secondAttribute="trailing" constant="11" id="X6g-bx-VJY"/>
-                        <constraint firstAttribute="trailing" secondItem="op9-va-VMg" secondAttribute="trailing" constant="11" id="euO-gx-UW9"/>
+                        <constraint firstItem="k7M-2g-98o" firstAttribute="leading" secondItem="e4x-eL-wif" secondAttribute="leading" constant="30" id="GGF-cr-ARh"/>
+                        <constraint firstAttribute="trailing" secondItem="k7M-2g-98o" secondAttribute="trailing" constant="30" id="X6g-bx-VJY"/>
+                        <constraint firstAttribute="trailing" secondItem="op9-va-VMg" secondAttribute="trailing" constant="30" id="euO-gx-UW9"/>
                         <constraint firstItem="k7M-2g-98o" firstAttribute="top" secondItem="e4x-eL-wif" secondAttribute="top" constant="49" id="f8d-Tz-1Pm"/>
                         <constraint firstItem="op9-va-VMg" firstAttribute="firstBaseline" secondItem="k7M-2g-98o" secondAttribute="baseline" constant="26" id="k7o-Mq-2xV"/>
-                        <constraint firstItem="op9-va-VMg" firstAttribute="leading" secondItem="e4x-eL-wif" secondAttribute="leading" constant="11" id="lh9-vJ-h2G"/>
+                        <constraint firstItem="op9-va-VMg" firstAttribute="leading" secondItem="e4x-eL-wif" secondAttribute="leading" constant="30" id="lh9-vJ-h2G"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGE-Fe-DAE">
@@ -97,8 +97,9 @@
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemGrayColor"/>
             <constraints>
+                <constraint firstItem="kdH-2P-TN8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="47.5" id="0wL-Gq-t2E"/>
                 <constraint firstItem="Xzv-hX-N8n" firstAttribute="centerY" secondItem="Yfz-t8-b5Y" secondAttribute="centerY" id="2jj-iF-Gi7"/>
                 <constraint firstItem="Tjh-nl-Hjc" firstAttribute="leading" secondItem="DpA-DD-ZMw" secondAttribute="trailing" constant="-99" id="39v-au-GCw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JeU-KG-Tdc" secondAttribute="trailing" constant="69" id="4fm-Uf-PMu"/>
@@ -113,14 +114,13 @@
                 <constraint firstItem="e4x-eL-wif" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="MUq-au-gjE"/>
                 <constraint firstAttribute="bottom" secondItem="e4x-eL-wif" secondAttribute="bottom" id="NfT-2Z-Aqz"/>
                 <constraint firstItem="e4x-eL-wif" firstAttribute="height" secondItem="Tjh-nl-Hjc" secondAttribute="height" multiplier="0.334821" id="OE5-lQ-7xm"/>
-                <constraint firstItem="Tjh-nl-Hjc" firstAttribute="leading" secondItem="kdH-2P-TN8" secondAttribute="trailing" constant="-95" id="PPb-tE-Qh7"/>
                 <constraint firstItem="e4x-eL-wif" firstAttribute="top" secondItem="Tjh-nl-Hjc" secondAttribute="bottom" priority="250" constant="-300" id="Q9S-NI-hcb"/>
+                <constraint firstItem="iGE-Fe-DAE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="47" id="RNq-sV-JHS"/>
                 <constraint firstItem="oCW-J5-eCD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="183" id="XXh-DQ-f5D"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="leading" secondItem="Yfz-t8-b5Y" secondAttribute="leading" constant="-20" id="gkx-eQ-mh3"/>
                 <constraint firstAttribute="bottom" secondItem="Tjh-nl-Hjc" secondAttribute="bottom" id="hTa-pP-v24"/>
                 <constraint firstAttribute="trailing" secondItem="Tjh-nl-Hjc" secondAttribute="trailing" id="rhV-TA-lYX"/>
                 <constraint firstItem="iGE-Fe-DAE" firstAttribute="top" secondItem="DpA-DD-ZMw" secondAttribute="bottom" constant="20" id="t8u-nJ-zU1"/>
-                <constraint firstItem="iGE-Fe-DAE" firstAttribute="leading" secondItem="kdH-2P-TN8" secondAttribute="trailing" constant="-48" id="vG0-NN-NM8"/>
                 <constraint firstItem="Tjh-nl-Hjc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xQI-2O-Heb"/>
                 <constraint firstItem="kdH-2P-TN8" firstAttribute="top" secondItem="iGE-Fe-DAE" secondAttribute="bottom" constant="8" symbolic="YES" id="za8-jb-HGG"/>
             </constraints>
@@ -143,6 +143,9 @@
         <image name="sun.min" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

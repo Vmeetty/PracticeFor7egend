@@ -17,12 +17,18 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
         tableView.dataSource = self
+        tableView.panGestureRecognizer.addTarget(self, action: #selector(didPan(_:)))
+
         
     }
 
 
+    @objc func didPan(_ gesture: UIPanGestureRecognizer) {
+        let service = Service.shared
+        service.animateCellsFor(tableView: tableView, by: gesture)
+    }
+    
 }
 
 // CASH CELLS <<<<<<<<<<<<-------------------<<<<<<<<<-----------------
@@ -56,18 +62,6 @@ extension FeedViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - Delegate section
-
-extension FeedViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 100, 0)
-        cell.layer.transform = rotationTransform
-        
-        UIView.animate(withDuration: 0.1 * Double(indexPath.row)) {
-            cell.layer.transform = CATransform3DIdentity
-        }
-    }
-}
 
 
 extension FeedViewController: TableViewCellDelegate {
@@ -80,14 +74,12 @@ extension FeedViewController: TableViewCellDelegate {
             print("Faild DetailsView config")
             return
         }
+        
+        detailView.translatesAutoresizingMaskIntoConstraints = false
+        detailView.frame = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
+        
         detailView.delegate = self
         view.addSubview(detailView)
-        
-//        if let cards = cards {
-//
-//            detailView.titleLabel.text = cards[indexPath.row].title
-//            view.addSubview(detailView)
-//        }
         
         UIView.animate(withDuration: 0.5) {
             NSLayoutConstraint.activate([
@@ -104,7 +96,7 @@ extension FeedViewController: TableViewCellDelegate {
 
 extension FeedViewController: DetailsViewDelegate {
     func didCloseDetails(_ view: DetailsView) {
-        print("Closed!")
+        //...
     }
 }
 
