@@ -13,6 +13,31 @@ class FeedViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+   
+    //MARK: - START
+    
+    enum CardState {
+        case expanded
+        case collapsed
+    }
+    
+    var cardViewController: CardViewController!
+    
+    let cardHeight: CGFloat = 350
+    let cardHandleAreaHeight: CGFloat = 65
+    
+    var cardVisible = false
+    var nextStep: CardState {
+        return cardVisible ? .collapsed : .expanded
+    }
+    
+    var runningAnimations = [UIViewPropertyAnimator]()
+    var animationProgressWhenInterrupted: CGFloat = 0
+    
+    @IBOutlet weak var menuTaped: UIImageView!
+  
+    //MARK: - END
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +45,112 @@ class FeedViewController: UIViewController {
         tableView.dataSource = self
         tableView.panGestureRecognizer.addTarget(self, action: #selector(didPan(_:)))
 
+        //MARK: - START
         
+        let menuTapGR = UITapGestureRecognizer(target: self, action: #selector(menuPressed))
+        menuTaped.addGestureRecognizer(menuTapGR)
+        menuTaped.isUserInteractionEnabled = true
+
+        
+        //MARK: - END
     }
 
+    
+    //MARK: - START
+    
+    @objc func menuPressed() {
+        setupCard()
+    }
+    
+    
+    func setupCard() {
+        
+        cardViewController = CardViewController(nibName: "CardViewController", bundle: nil)
+        self.addChild(cardViewController)
+        self.view.addSubview(cardViewController.view)
+        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height - cardHandleAreaHeight, width: self.view.bounds.width, height: cardHeight)
+        cardViewController.view.clipsToBounds = true
+        
+        let panGR = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
+        cardViewController.handelArea.addGestureRecognizer(panGR)
+        
+        self.cardViewController.view.layer.cornerRadius = 30
+    }
+    
+    
+    @objc func handleCardPan(recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            startInteractiveTransition(state: nextStep, duration: 0.9)
+        case .changed:
+            updateIntarectiveTransition(fractionCompleted: 0)
+        case .ended:
+            continueInteractionTransition()
+        default:
+            break
+        }
+    }
+    
+    @objc func handleCardTap(recognizer: UITapGestureRecognizer) {
+        setupCard()
+        switch recognizer.state {
+        case .ended:
+            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
+        default:
+            break
+        }
+    }
+    
+    func animateTransitionIfNeeded(state: CardState, duration: TimeInterval) {
+        if runningAnimations.isEmpty {
+            let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+                switch state {
+                case .expanded:
+                    self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight
+                case .collapsed:
+                    self.cardViewController.view.frame.origin.y = self.view.frame.height
+                }
+            }
+            frameAnimator.addCompletion { _ in
+                self.cardVisible = !self.cardVisible
+                self.runningAnimations.removeAll()
+            }
+            frameAnimator.startAnimation()
+            runningAnimations.append(frameAnimator)
+        }
+    }
+    
+    
+    func startInteractiveTransition(state: CardState, duration: TimeInterval) {
+        if runningAnimations.isEmpty {
+            animateTransitionIfNeeded(state: state, duration: duration)
+        }
+        for animator in runningAnimations {
+            animator.pauseAnimation()
+            animationProgressWhenInterrupted = animator.fractionComplete
+        }
+    }
+    
+    func updateIntarectiveTransition(fractionCompleted: CGFloat) {
+        for animator in runningAnimations {
+            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
+        }
+    }
+    
+    func continueInteractionTransition() {
+        for animator in runningAnimations {
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        }
+    }
+    
+    
+    
+    
+    //MARK: - END
+    
+    
+    
+    
 
     @objc func didPan(_ gesture: UIPanGestureRecognizer) {
         let service = Service.shared
@@ -57,6 +185,10 @@ extension FeedViewController: UITableViewDataSource {
         cell.indexPath = indexPath
         cell.delegate = self
         cell.card = cards[indexPath.row]
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleCardTap(recognizer:)))
+        cell.pictureImageView.addGestureRecognizer(tapGR)
+        cell.pictureImageView.isUserInteractionEnabled = true
                 
         return cell
     }

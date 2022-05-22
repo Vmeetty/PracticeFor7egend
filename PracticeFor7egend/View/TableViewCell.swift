@@ -27,13 +27,14 @@ class TableViewCell: UITableViewCell {
             updateUI()
         }
     }
+    weak var feedVC: FeedViewController!
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(detailsTaped))
-        pictureImageView.addGestureRecognizer(tapGR)
-        pictureImageView.isUserInteractionEnabled = true
+//        let tapGR = UITapGestureRecognizer(target: FeedViewController.self, action: #selector(feedVC.handleCardTap(recognizer:)))
+//        pictureImageView.addGestureRecognizer(tapGR)
+//        pictureImageView.isUserInteractionEnabled = true
     }
     
     
