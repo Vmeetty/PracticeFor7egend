@@ -21,57 +21,57 @@ struct Manager {
         cards.append(Card(
             image: UIImage(named: K.Image.i1)!,
             title: K.Title.t1,
-            description: K.Descrip.d1,
-            topImage: UIImage(systemName: K.SystemImage.s1)!,
+            shortDescription: K.ShortDescrip.d1,
+            icon: UIImage(systemName: K.Icon.s1)!,
             user1: UIImage(named: K.User.image1),
             user2: nil))
         cards.append(Card(
             image: UIImage(named: K.Image.i2)!,
             title: K.Title.t2,
-            description: K.Descrip.d2,
-            topImage: UIImage(systemName: K.SystemImage.s2)!,
+            shortDescription: K.ShortDescrip.d2,
+            icon: UIImage(systemName: K.Icon.s2)!,
             user1: UIImage(named: K.User.image2),
             user2: UIImage(named: K.User.image5)))
         cards.append(Card(
             image: UIImage(named: K.Image.i3)!,
             title: K.Title.t3,
-            description: K.Descrip.d3,
-            topImage: UIImage(systemName: K.SystemImage.s1)!,
+            shortDescription: K.ShortDescrip.d3,
+            icon: UIImage(systemName: K.Icon.s1)!,
             user1: UIImage(named: K.User.image3),
             user2: nil))
         cards.append(Card(
             image: UIImage(named: K.Image.i4)!,
             title: K.Title.t4,
-            description: K.Descrip.d4,
-            topImage: UIImage(systemName: K.SystemImage.s1)!,
+            shortDescription: K.ShortDescrip.d4,
+            icon: UIImage(systemName: K.Icon.s1)!,
             user1: UIImage(named: K.User.image4),
             user2: nil))
         cards.append(Card(
             image: UIImage(named: K.Image.i5)!,
             title: K.Title.t5,
-            description: K.Descrip.d5,
-            topImage: UIImage(systemName: K.SystemImage.s2)!,
+            shortDescription: K.ShortDescrip.d5,
+            icon: UIImage(systemName: K.Icon.s2)!,
             user1: UIImage(named: K.User.image5),
             user2: UIImage(named: K.User.image5)))
         cards.append(Card(
             image: UIImage(named: K.Image.i6)!,
             title: K.Title.t6,
-            description: K.Descrip.d6,
-            topImage: UIImage(systemName: K.SystemImage.s1)!,
+            shortDescription: K.ShortDescrip.d6,
+            icon: UIImage(systemName: K.Icon.s1)!,
             user1: UIImage(named: K.User.image2),
             user2: nil))
         cards.append(Card(
             image: UIImage(named: K.Image.i7)!,
             title: K.Title.t7,
-            description: K.Descrip.d7,
-            topImage: UIImage(systemName: K.SystemImage.s2)!,
+            shortDescription: K.ShortDescrip.d7,
+            icon: UIImage(systemName: K.Icon.s2)!,
             user1: UIImage(named: K.User.image1),
             user2: nil))
         cards.append(Card(
             image: UIImage(named: K.Image.i8)!,
             title: K.Title.t8,
-            description: K.Descrip.d8,
-            topImage: UIImage(systemName: K.SystemImage.s2)!,
+            shortDescription: K.ShortDescrip.d8,
+            icon: UIImage(systemName: K.Icon.s2)!,
             user1: UIImage(named: K.User.image4),
             user2: nil))
         

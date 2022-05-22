@@ -47,8 +47,8 @@ class TableViewCell: UITableViewCell {
         configUI()
         pictureImageView.image = card.image
         titleLabel.text = card.title
-        descriptionLabel.text = card.description
-        topImageView.image = card.topImage
+        descriptionLabel.text = card.shortDescription
+        topImageView.image = card.icon
         
         if let userImage1 = card.user1 {
             firstUserImageView.image = userImage1

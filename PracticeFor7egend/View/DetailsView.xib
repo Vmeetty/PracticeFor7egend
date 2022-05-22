@@ -127,6 +127,7 @@
             <connections>
                 <outlet property="backgroundImageView" destination="Tjh-nl-Hjc" id="o1T-ai-2F3"/>
                 <outlet property="boldDescriptionLabel" destination="k7M-2g-98o" id="BId-Kg-K99"/>
+                <outlet property="bottomContainerView" destination="e4x-eL-wif" id="1Ml-cg-zz6"/>
                 <outlet property="cityLabel" destination="JeU-KG-Tdc" id="dAv-Yo-Yg3"/>
                 <outlet property="descriptionLabel" destination="op9-va-VMg" id="b0C-pP-vG9"/>
                 <outlet property="iconImageView" destination="DpA-DD-ZMw" id="WH4-Td-PqH"/>

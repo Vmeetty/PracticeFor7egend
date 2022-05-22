@@ -51,11 +51,7 @@ extension FeedViewController: UITableViewDataSource {
         cell.indexPath = indexPath
         cell.delegate = self
         cell.card = cards[indexPath.row]
-        
-//        let tapGR = UITapGestureRecognizer(target: self, action: #selector(detailsTaped))
-//        cell.pictureImageView.addGestureRecognizer(tapGR)
-//        cell.pictureImageView.isUserInteractionEnabled = true
-        
+                
         return cell
     }
 }
@@ -76,20 +72,22 @@ extension FeedViewController: UITableViewDelegate {
 
 extension FeedViewController: TableViewCellDelegate {
     func detailsPressed(indexPath: IndexPath) {
-        guard let detailView = Bundle.main.loadNibNamed("DetailsView", owner: nil, options: nil)?.first as? DetailsView else { return }
-        detailView.translatesAutoresizingMaskIntoConstraints = false
-        detailView.frame = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
-        detailView.delegate = self
-        
-        let tapGR = UITapGestureRecognizer(target: detailView, action: #selector(detailView.closeDetails))
-        detailView.backgroundImageView.addGestureRecognizer(tapGR)
-        detailView.backgroundImageView.isUserInteractionEnabled = true
-        
-        if let cards = cards {
-            
-            detailView.titleLabel.text = cards[indexPath.row].title
-            view.addSubview(detailView)
+        guard let card = cards?[indexPath.row] else {
+            print("No data for card")
+            return
         }
+        guard let detailView = Configure.shared.configDetailsWith(card: card, and: self) else {
+            print("Faild DetailsView config")
+            return
+        }
+        detailView.delegate = self
+        view.addSubview(detailView)
+        
+//        if let cards = cards {
+//
+//            detailView.titleLabel.text = cards[indexPath.row].title
+//            view.addSubview(detailView)
+//        }
         
         UIView.animate(withDuration: 0.5) {
             NSLayoutConstraint.activate([

@@ -22,14 +22,10 @@ class DetailsView: UIView {
     @IBOutlet weak var boldDescriptionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var bottomContainerView: UIView!
     
     
-    func configure(_ title: String, backImage: UIImage, icon: UIImage, description: String) {
-        titleLabel.text = title
-        backgroundImageView.image = backImage
-        iconImageView.image = icon
-        descriptionLabel.text = description
-    }
+    
     
     @objc func closeDetails() {
         removeFromSuperview()

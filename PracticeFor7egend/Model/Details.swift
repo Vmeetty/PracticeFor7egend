@@ -10,7 +10,7 @@ import UIKit
 
 struct Details {
     
-    let image: UIImage
+    let backgroundImage: UIImage
     let title: String
     let description: String
     let icon: UIImage
