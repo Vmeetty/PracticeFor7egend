@@ -34,7 +34,6 @@ class FeedViewController: UIViewController {
     var runningAnimations = [UIViewPropertyAnimator]()
     var animationProgressWhenInterrupted: CGFloat = 0
     
-    @IBOutlet weak var menuTaped: UIImageView!
   
     //MARK: - END
     
@@ -45,22 +44,10 @@ class FeedViewController: UIViewController {
         tableView.dataSource = self
         tableView.panGestureRecognizer.addTarget(self, action: #selector(didPan(_:)))
 
-        //MARK: - START
-        
-        let menuTapGR = UITapGestureRecognizer(target: self, action: #selector(menuPressed))
-        menuTaped.addGestureRecognizer(menuTapGR)
-        menuTaped.isUserInteractionEnabled = true
-
-        
-        //MARK: - END
     }
 
     
     //MARK: - START
-    
-    @objc func menuPressed() {
-        setupCard()
-    }
     
     
     func setupCard() {
@@ -143,9 +130,7 @@ class FeedViewController: UIViewController {
         }
     }
     
-    
-    
-    
+        
     //MARK: - END
     
     

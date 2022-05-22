@@ -153,7 +153,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="menuTaped" destination="2tQ-gD-uGt" id="niU-ht-6Pl"/>
                         <outlet property="tableView" destination="Rx1-KB-fNF" id="FpV-6P-6cG"/>
                     </connections>
                 </viewController>
