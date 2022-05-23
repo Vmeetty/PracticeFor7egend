@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CardViewController: UIViewController {
+class DescriptionViewController: UIViewController {
 
     @IBOutlet weak var handelArea: UIView!
     

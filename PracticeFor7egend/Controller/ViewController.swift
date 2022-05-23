@@ -14,7 +14,8 @@ class ViewController: UIViewController {
         case collapsed
     }
     
-    var cardViewController: CardViewController!
+    var descriptionViewController: DescriptionViewController!
+    var banerViewController: BanerViewController!
     
     let cardHeight: CGFloat = 350
     
@@ -31,30 +32,44 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    func setupBanerView() {
+        banerViewController = BanerViewController(nibName: "BanerViewController", bundle: nil)
+        self.addChild(banerViewController)
+        self.view.addSubview(banerViewController.view)
+        let width: CGFloat = 200
+        let height: CGFloat = 200
+        banerViewController.view.frame = CGRect(x: view.center.x / 2, y: view.center.y - (height / 2), width: width, height: height)
+        
+        let panGR = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
+        banerViewController.backImageView.addGestureRecognizer(panGR)
+        banerViewController.backImageView.isUserInteractionEnabled = true
+        
+//        banerViewController.view.clipsToBounds = true
+    }
     
-    func setupCard() {
-        cardViewController = CardViewController(nibName: "CardViewController", bundle: nil)
-        self.addChild(cardViewController)
-        self.view.addSubview(cardViewController.view)
-        cardViewController.view.frame = CGRect(
+    func setupDescriptionView() {
+        descriptionViewController = DescriptionViewController(nibName: "DescriptionViewController", bundle: nil)
+        self.addChild(descriptionViewController)
+        self.view.addSubview(descriptionViewController.view)
+        descriptionViewController.view.frame = CGRect(
             x: 0,
             y: self.view.frame.height,
             width: self.view.bounds.width,
             height: cardHeight)
         
-        cardViewController.view.clipsToBounds = true
+        descriptionViewController.view.clipsToBounds = true
         
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
-        cardViewController.handelArea.addGestureRecognizer(panGR)
+        descriptionViewController.handelArea.addGestureRecognizer(panGR)
         
-        self.cardViewController.view.layer.cornerRadius = 30
+        self.descriptionViewController.view.layer.cornerRadius = 30
     }
     
     
     @objc func handleCardPan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
-            startInteractiveTransition(state: nextStep, duration: 0.9)
+            startInteractiveTransition(state: nextStep, duration: 0.5)
         case .changed:
             updateIntarectiveTransition(fractionCompleted: 0)
         case .ended:
@@ -65,10 +80,11 @@ class ViewController: UIViewController {
     }
     
     @objc func handleCardTap(recognizer: UITapGestureRecognizer) {
-        setupCard()
+        setupBanerView()
+        setupDescriptionView()
         switch recognizer.state {
         case .ended:
-            animateTransitionIfNeeded(state: nextStep, duration: 0.9)
+            animateTransitionIfNeeded(state: nextStep, duration: 0.5)
         default:
             break
         }
@@ -80,9 +96,9 @@ class ViewController: UIViewController {
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
                 switch state {
                 case .expanded:
-                    self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight
+                    self.descriptionViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight
                 case .collapsed:
-                    self.cardViewController.view.frame.origin.y = self.view.frame.height
+                    self.descriptionViewController.view.frame.origin.y = self.view.frame.height
                 }
             }
             frameAnimator.addCompletion { _ in
@@ -91,6 +107,23 @@ class ViewController: UIViewController {
             }
             frameAnimator.startAnimation()
             runningAnimations.append(frameAnimator)
+            
+            let banerAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+                switch state {
+                case .expanded:
+                    let width: CGFloat = self.view.bounds.height
+                    let height: CGFloat = self.view.bounds.height
+                    self.banerViewController.view.frame = CGRect(
+                        x: self.view.center.x - (width / 2),
+                        y: self.view.center.y - (height / 2),
+                        width: width,
+                        height: height)
+                case .collapsed:
+                    self.banerViewController.view.frame.origin.y = self.view.frame.height
+                }
+            }
+            banerAnimator.startAnimation()
+            runningAnimations.append(banerAnimator)
         }
     }
     
