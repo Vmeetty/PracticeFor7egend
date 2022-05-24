@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TableViewCellDelegate: AnyObject {
-    func detailsPressed(indexPath: IndexPath)
+    func detailsPressed(indexPath: IndexPath, recognizer: UITapGestureRecognizer)
 }
 
 class TableViewCell: UITableViewCell {
@@ -22,24 +22,34 @@ class TableViewCell: UITableViewCell {
     
     weak var delegate: TableViewCellDelegate?
     var indexPath: IndexPath!
+    let feedVC = FeedViewController()
     var card: Card! {
         didSet {
             updateUI()
+            
         }
     }
-    weak var feedVC: FeedViewController!
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
-//        let tapGR = UITapGestureRecognizer(target: FeedViewController.self, action: #selector(feedVC.handleCardTap(recognizer:)))
-//        pictureImageView.addGestureRecognizer(tapGR)
-//        pictureImageView.isUserInteractionEnabled = true
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(detailsTaped(recognizer:)))
+        pictureImageView.addGestureRecognizer(tapGR)
+        pictureImageView.isUserInteractionEnabled = true
     }
     
     
-    @objc func detailsTaped() {
-        delegate?.detailsPressed(indexPath: indexPath)
+    @objc func detailsTaped(recognizer: UITapGestureRecognizer) {
+//        UIView.animate(withDuration: 0.2) {
+//            self.pictureImageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+//        } completion: { isFinished in
+//            if isFinished {
+//                UIView.animate(withDuration: 0.2) {
+//                    self.pictureImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+//                }
+//            }
+//        }
+        delegate?.detailsPressed(indexPath: indexPath, recognizer: recognizer)
     }
     
     
@@ -80,9 +90,6 @@ class TableViewCell: UITableViewCell {
         secondUserImageView.layer.borderWidth = 1
         secondUserImageView.layer.borderColor = UIColor.white.cgColor
         
-        let tapGR = UIGestureRecognizer(target: self, action: #selector(detailsTaped))
-        pictureImageView.addGestureRecognizer(tapGR)
-        pictureImageView.isUserInteractionEnabled = true
     }
     
 }

@@ -88,4 +88,9 @@ struct K {
         static let cellID = "Cell"
     }
     
+    struct NibName {
+        static let descNibName = "DescriptionViewController"
+        static let banerNibName = "BanerViewController"
+    }
+    
 }

@@ -11,7 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DescriptionViewController" customModule="PracticeFor7egend" customModuleProvider="target">
             <connections>
+                <outlet property="cityLabel" destination="Uv1-xQ-dJo" id="O3j-bO-o6T"/>
+                <outlet property="fullDescription" destination="Tog-g6-6yx" id="GdW-D9-uxI"/>
                 <outlet property="handelArea" destination="Krt-g1-faL" id="lgu-5d-V2i"/>
+                <outlet property="markerView" destination="2T5-FU-8Ko" id="9L3-RQ-Nmf"/>
+                <outlet property="shortDescription" destination="AYY-ei-gZ8" id="Bdc-l7-LqL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

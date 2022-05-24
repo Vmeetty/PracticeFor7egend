@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var descriptionViewController: DescriptionViewController!
     var banerViewController: BanerViewController!
     
-    let cardHeight: CGFloat = 350
+    let cardHeight: CGFloat = 300
     
     var cardVisible = false
     var nextStep: CardState {
@@ -33,22 +33,61 @@ class ViewController: UIViewController {
     }
     
     func setupBanerView() {
-        banerViewController = BanerViewController(nibName: "BanerViewController", bundle: nil)
+        banerViewController = BanerViewController(nibName: K.NibName.banerNibName, bundle: nil)
+        
         self.addChild(banerViewController)
         self.view.addSubview(banerViewController.view)
-        let width: CGFloat = 200
-        let height: CGFloat = 200
-        banerViewController.view.frame = CGRect(x: view.center.x / 2, y: view.center.y - (height / 2), width: width, height: height)
+        
+        let backView = banerViewController.backImageView!
+        banerViewController.view.addSubview(backView)
+        backView.translatesAutoresizingMaskIntoConstraints = false
+        backView.alpha = 0
+        let screenWidth: CGFloat = view.frame.width
+        let screenHeight: CGFloat = view.frame.height
+        backView.frame = CGRect(
+            x: view.center.x - ((screenWidth - 100) / 2),
+            y: view.center.y - ((screenHeight - 80) / 2),
+            width: screenWidth - 100,
+            height: screenHeight - 80)
+        
+        
+        let timingView = self.banerViewController.timingLabel!
+//        timingView.widthAnchor.constraint(equalToConstant: screenWidth - 80).isActive = true
+//        self.banerViewController.view.addSubview(timingView)
+        
+//        timingView.translatesAutoresizingMaskIntoConstraints = false
+//        timingView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
+//        timingView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 40).isActive = true
+//        timingView.topAnchor.constraint(equalTo: view.topAnchor, constant: 350).isActive = true
+//        timingView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+        
+        
+        
+//        banerImageView.addSubview(banerViewController.titleLabel)
+//        banerViewController.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+//        banerImageView.addSubview(banerViewController.iconImageView)
+//        banerImageView.addSubview(banerViewController.xmarkImageView)
+//        banerImageView.addSubview(banerViewController.editLabel)
+//        banerImageView.addSubview(banerViewController.profileImageView)
+        
         
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
         banerViewController.backImageView.addGestureRecognizer(panGR)
         banerViewController.backImageView.isUserInteractionEnabled = true
         
-//        banerViewController.view.clipsToBounds = true
+        let xmarkTapGR = UITapGestureRecognizer(target: self, action: #selector(xmarkTaped(recognizer:)))
+        banerViewController.xmarkImageView.addGestureRecognizer(xmarkTapGR)
+        banerViewController.xmarkImageView.isUserInteractionEnabled = true
     }
     
+    
+    
+    
     func setupDescriptionView() {
-        descriptionViewController = DescriptionViewController(nibName: "DescriptionViewController", bundle: nil)
+        descriptionViewController = DescriptionViewController(nibName: K.NibName.descNibName, bundle: nil)
         self.addChild(descriptionViewController)
         self.view.addSubview(descriptionViewController.view)
         descriptionViewController.view.frame = CGRect(
@@ -65,23 +104,17 @@ class ViewController: UIViewController {
         self.descriptionViewController.view.layer.cornerRadius = 30
     }
     
-    
-    @objc func handleCardPan(recognizer: UIPanGestureRecognizer) {
-        switch recognizer.state {
-        case .began:
-            startInteractiveTransition(state: nextStep, duration: 0.5)
-        case .changed:
-            updateIntarectiveTransition(fractionCompleted: 0)
-        case .ended:
-            continueInteractionTransition()
-        default:
-            break
-        }
+    private func populateDetails(ofCard card: Card) {
+        banerViewController.titleLabel.text = card.title
+        banerViewController.timingLabel.text = card.timing
+        banerViewController.iconImageView.image = card.icon
+        banerViewController.backImageView.image = card.image
+        descriptionViewController.cityLabel.text = card.city
+        descriptionViewController.fullDescription.text = card.fullDescription
+        descriptionViewController.shortDescription.text = card.shortDescription
     }
     
-    @objc func handleCardTap(recognizer: UITapGestureRecognizer) {
-        setupBanerView()
-        setupDescriptionView()
+    @objc func xmarkTaped(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .ended:
             animateTransitionIfNeeded(state: nextStep, duration: 0.5)
@@ -89,6 +122,37 @@ class ViewController: UIViewController {
             break
         }
     }
+    
+    
+    @objc func handleCardPan(recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            startInteractiveTransition(state: nextStep, duration: 0.5)
+        case .changed:
+            let translation = recognizer.translation(in: banerViewController.backImageView)
+            var fractionComplete = translation.y / cardHeight
+            fractionComplete = cardVisible ? fractionComplete : -fractionComplete
+            updateIntarectiveTransition(fractionCompleted: fractionComplete)
+        case .ended:
+            continueInteractionTransition(state: nextStep)
+        default:
+            break
+        }
+    }
+    
+    func handleCardTap(recognizer: UITapGestureRecognizer, card: Card) {
+        setupBanerView()
+        setupDescriptionView()
+        populateDetails(ofCard: card)
+        
+        switch recognizer.state {
+        case .ended:
+            animateTransitionIfNeeded(state: nextStep, duration: 2)
+        default:
+            break
+        }
+    }
+    
     
     
     func animateTransitionIfNeeded(state: CardState, duration: TimeInterval) {
@@ -108,22 +172,35 @@ class ViewController: UIViewController {
             frameAnimator.startAnimation()
             runningAnimations.append(frameAnimator)
             
-            let banerAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+            
+            let banerAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
                 switch state {
                 case .expanded:
-                    let width: CGFloat = self.view.bounds.height
-                    let height: CGFloat = self.view.bounds.height
-                    self.banerViewController.view.frame = CGRect(
-                        x: self.view.center.x - (width / 2),
-                        y: self.view.center.y - (height / 2),
-                        width: width,
-                        height: height)
+                    NSLayoutConstraint.activate([
+                        self.banerViewController.backImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                        self.banerViewController.backImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                        self.banerViewController.backImageView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                        self.banerViewController.backImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor)
+                    ])
+                    self.banerViewController.backImageView.alpha = 1
                 case .collapsed:
-                    self.banerViewController.view.frame.origin.y = self.view.frame.height
+                    self.banerViewController.backImageView.alpha = 0
                 }
+                self.view.layoutIfNeeded()
             }
             banerAnimator.startAnimation()
             runningAnimations.append(banerAnimator)
+            
+//            let topButtonsAnimator = UIViewPropertyAnimator(duration: duration - 0.1, curve: .linear) {
+//                switch state {
+//                case .expanded:
+//                    print("")
+//                case .collapsed:
+//                    print("")
+//                }
+//            }
+//            topButtonsAnimator.startAnimation()
+//            runningAnimations.append(topButtonsAnimator)
         }
     }
     
@@ -144,10 +221,19 @@ class ViewController: UIViewController {
         }
     }
     
-    func continueInteractionTransition() {
+    func continueInteractionTransition(state: CardState) {
         for animator in runningAnimations {
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
         }
+        switch state {
+        case .expanded:
+            print("expanded")
+        case .collapsed:
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.banerViewController.view.removeFromSuperview()
+            }
+        }
+        
     }
     
 }

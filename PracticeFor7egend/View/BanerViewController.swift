@@ -12,7 +12,10 @@ class BanerViewController: UIViewController {
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timingLabel: UILabel!
-    
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var xmarkImageView: UIImageView!
+    @IBOutlet weak var editLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

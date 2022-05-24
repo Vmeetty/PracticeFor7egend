@@ -10,6 +10,10 @@ import UIKit
 class DescriptionViewController: UIViewController {
 
     @IBOutlet weak var handelArea: UIView!
+    @IBOutlet weak var shortDescription: UILabel!
+    @IBOutlet weak var fullDescription: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var markerView: UIView!
     
     
     override func viewDidLoad() {

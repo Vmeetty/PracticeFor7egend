@@ -53,50 +53,27 @@ extension FeedViewController: UITableViewDataSource {
             cell.contentConfiguration = content
             return cell
         }
+        cell.delegate = self
         cell.indexPath = indexPath
-//        cell.delegate = self
         cell.card = cards[indexPath.row]
-        
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleCardTap(recognizer:)))
-        cell.pictureImageView.addGestureRecognizer(tapGR)
-        cell.pictureImageView.isUserInteractionEnabled = true
-                
+        cell.selectionStyle = .none
+                        
         return cell
     }
 }
 
 
-extension FeedViewController: DetailsViewDelegate {
-    func didCloseDetails(_ view: DetailsView) {
-        //...
+
+
+extension FeedViewController: TableViewCellDelegate {
+    func detailsPressed(indexPath: IndexPath, recognizer: UITapGestureRecognizer) {
+        guard let card = cards?[indexPath.row] else {
+            print("No data for card")
+            return
+        }
+        handleCardTap(recognizer: recognizer, card: card)
     }
+    
+   
 }
 
-//extension FeedViewController: TableViewCellDelegate {
-//    func detailsPressed(indexPath: IndexPath) {
-//        guard let card = cards?[indexPath.row] else {
-//            print("No data for card")
-//            return
-//        }
-//        guard let detailView = Configure.shared.configDetailsWith(card: card, and: self) else {
-//            print("Faild DetailsView config")
-//            return
-//        }
-//
-//        detailView.translatesAutoresizingMaskIntoConstraints = false
-//        detailView.frame = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
-//
-//        detailView.delegate = self
-//        view.addSubview(detailView)
-//
-//        UIView.animate(withDuration: 0.5) {
-//            NSLayoutConstraint.activate([
-//                detailView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-//                detailView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-//                detailView.topAnchor.constraint(equalTo: self.view.topAnchor),
-//                detailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-//            ])
-//            self.view.layoutIfNeeded()
-//        }
-//    }
-//}

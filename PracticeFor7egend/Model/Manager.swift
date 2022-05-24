@@ -14,7 +14,7 @@ struct Manager {
     static var shared = Manager()
     
     
-    //MARK: - Here we can Load data from database. But not now
+    //MARK: - Here we can Load data from database
     
     mutating func fetchCards() -> [Card]? {
         var cards: Array<Card> = []
