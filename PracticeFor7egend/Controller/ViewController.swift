@@ -51,33 +51,11 @@ class ViewController: UIViewController {
             height: screenHeight - 100
         )
         
-        let timingLabel = banerViewController.timingLabel!
-        banerViewController.view.addSubview(timingLabel)
-        timingLabel.translatesAutoresizingMaskIntoConstraints = false
-        timingLabel.alpha = 0
-
-        let titleLabel = banerViewController.titleLabel!
-        banerViewController.view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.alpha = 0
-        
-        let xMarkImageView = banerViewController.xMarkImageView!
-        banerViewController.view.addSubview(xMarkImageView)
-        xMarkImageView.translatesAutoresizingMaskIntoConstraints = false
-        xMarkImageView.alpha = 0
-        
-        let iconImageView = banerViewController.iconImageView!
-        banerViewController.view.addSubview(iconImageView)
-        iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        iconImageView.alpha = 0
-        
-        let editLabel = banerViewController.editLabel!
-        banerViewController.view.addSubview(editLabel)
-        editLabel.translatesAutoresizingMaskIntoConstraints = false
-        editLabel.alpha = 0
-        
-        
-        
+        configView(view: banerViewController.timingLabel!)
+        configView(view: banerViewController.titleLabel!)
+        configView(view: banerViewController.xMarkImageView!)
+        configView(view: banerViewController.iconImageView!)
+        configView(view: banerViewController.editLabel!)
         
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
         banerViewController.backImageView.addGestureRecognizer(panGR)
@@ -88,8 +66,12 @@ class ViewController: UIViewController {
         banerViewController.xMarkImageView.isUserInteractionEnabled = true
     }
     
-    
-    
+    private func configView(view: UIView) {
+        let newView = view
+        banerViewController.view.addSubview(newView)
+        newView.translatesAutoresizingMaskIntoConstraints = false
+        newView.alpha = 0
+    }
     
     func setupDescriptionView() {
         descriptionViewController = DescriptionViewController(nibName: K.NibName.descNibName, bundle: nil)
@@ -129,7 +111,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @objc func handleCardPan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
@@ -160,7 +141,6 @@ class ViewController: UIViewController {
             break
         }
     }
-    
     
     
     func animateTransitionIfNeeded(state: CardState, duration: TimeInterval) {
@@ -205,17 +185,6 @@ class ViewController: UIViewController {
             }
             banerAnimator.startAnimation()
             runningAnimations.append(banerAnimator)
-            
-//            let buttonsAndLabelAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
-//                switch state {
-//                case .expanded:
-//                    self.banerViewController.timingLabel.alpha = 1
-//                case .collapsed:
-//                    print("")
-//                }
-//            }
-//            buttonsAndLabelAnimator.startAnimation()
-//            runningAnimations.append(buttonsAndLabelAnimator)
         }
     }
     

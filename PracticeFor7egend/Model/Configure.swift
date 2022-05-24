@@ -13,41 +13,51 @@ struct Configure {
     static var shared = Configure()
     
     
-//    func configDetailsWith(card: Card, and sender: UIViewController) {
-//        guard let detailView = Bundle.main.loadNibNamed("DetailsView", owner: nil, options: nil)?.first as? DetailsView else { return nil }
+//    func setupView(sender: ViewController, nibController: UIViewController) {
+//        switch nibController {
+//        case let banerVC as BanerViewController: print("BanerViewController")
+//        case let desriptionVC as DescriptionViewController: print("DescriptionViewController")
+//        default: break
+//        }
+//    }
+//    
+//    private func setupBanerView() {
+//        self.addChild(banerViewController)
+//        self.view.addSubview(banerViewController.view)
 //        
-//        detailView.backgroundImageView.image = card.image
-//        detailView.titleLabel.text = card.title
-//        detailView.boldDescriptionLabel.text = card.shortDescription
-//        detailView.iconImageView.image = card.icon
-//        detailView.descriptionLabel.text = card.fullDescription
-//        detailView.cityLabel.text = card.city
-//        detailView.timingLabel.text = card.timing
+//        let backView = banerViewController.backImageView!
+//        banerViewController.view.addSubview(backView)
+//        backView.translatesAutoresizingMaskIntoConstraints = false
+//        backView.alpha = 0
+//        let screenWidth: CGFloat = view.frame.width
+//        let screenHeight: CGFloat = view.frame.height
+//        backView.frame = CGRect(
+//            x: view.center.x - ((screenWidth - 100) / 2),
+//            y: view.center.y - ((screenHeight - 80) / 2),
+//            width: screenWidth - 50,
+//            height: screenHeight - 100
+//        )
 //        
+//        configView(view: banerViewController.timingLabel!)
+//        configView(view: banerViewController.titleLabel!)
+//        configView(view: banerViewController.xMarkImageView!)
+//        configView(view: banerViewController.iconImageView!)
+//        configView(view: banerViewController.editLabel!)
 //        
+//        let panGR = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
+//        banerViewController.backImageView.addGestureRecognizer(panGR)
+//        banerViewController.backImageView.isUserInteractionEnabled = true
 //        
+//        let xmarkTapGR = UITapGestureRecognizer(target: self, action: #selector(xmarkTaped(recognizer:)))
+//        banerViewController.xMarkImageView.addGestureRecognizer(xmarkTapGR)
+//        banerViewController.xMarkImageView.isUserInteractionEnabled = true
+//    }
+//    
+//    private func configView(view: UIView) {
+//        let newView = view
+//        banerViewController.view.addSubview(newView)
+//        newView.translatesAutoresizingMaskIntoConstraints = false
+//        newView.alpha = 0
 //    }
     
-    
-//    func configDetailsWith(card: Card, and sender: UIViewController) -> DetailsView? {
-//        guard let detailView = Bundle.main.loadNibNamed("DetailsView", owner: nil, options: nil)?.first as? DetailsView else { return nil }
-//
-//        detailView.backgroundImageView.image = card.image
-//        detailView.titleLabel.text = card.title
-//        detailView.boldDescriptionLabel.text = card.shortDescription
-//        detailView.iconImageView.image = card.icon
-//        detailView.descriptionLabel.text = card.fullDescription
-//        detailView.cityLabel.text = card.city
-//        detailView.timingLabel.text = card.timing
-//
-//        detailView.bottomContainerView.layer.cornerRadius = 30
-//
-//
-//        return detailView
-//    }
-    
-
-    //        let tapGR = UITapGestureRecognizer(target: detailView, action: #selector(detailView.closeDetails))
-    //        detailView.backgroundImageView.addGestureRecognizer(tapGR)
-    //        detailView.backgroundImageView.isUserInteractionEnabled = true
 }

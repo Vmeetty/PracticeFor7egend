@@ -26,7 +26,6 @@ class TableViewCell: UITableViewCell {
     var card: Card! {
         didSet {
             updateUI()
-            
         }
     }
     
@@ -46,6 +45,12 @@ class TableViewCell: UITableViewCell {
             if isFinished {
                 UIView.animate(withDuration: 0.2) {
                     self.pictureImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                } completion: { isFinished in
+                    if isFinished {
+                        UIView.animate(withDuration: 0.2) {
+                            self.pictureImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        }
+                    }
                 }
             }
         }

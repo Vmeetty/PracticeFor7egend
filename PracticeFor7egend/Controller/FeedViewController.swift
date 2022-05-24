@@ -10,24 +10,23 @@ import UIKit
 class FeedViewController: ViewController {
     
     var cards = Manager.shared.fetchCards()
-
+    
     @IBOutlet weak var tableView: UITableView!
     
+    var indexPathSelected: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.panGestureRecognizer.addTarget(self, action: #selector(didPan(_:)))
-
+        
     }
     
-
     @objc func didPan(_ gesture: UIPanGestureRecognizer) {
         let service = Service.shared
         service.animateCellsFor(tableView: tableView, by: gesture)
     }
-    
 }
 
 // CASH CELLS <<<<<<<<<<<<-------------------<<<<<<<<<-----------------
@@ -57,11 +56,10 @@ extension FeedViewController: UITableViewDataSource {
         cell.indexPath = indexPath
         cell.card = cards[indexPath.row]
         cell.selectionStyle = .none
-                        
+        
         return cell
     }
 }
-
 
 
 
@@ -71,9 +69,10 @@ extension FeedViewController: TableViewCellDelegate {
             print("No data for card")
             return
         }
-        self.handleCardTap(recognizer: recognizer, card: card)
+        handleCardTap(recognizer: recognizer, card: card)
+        indexPathSelected = indexPath
     }
     
-   
+    
 }
 
