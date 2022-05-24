@@ -47,31 +47,36 @@ class ViewController: UIViewController {
         backView.frame = CGRect(
             x: view.center.x - ((screenWidth - 100) / 2),
             y: view.center.y - ((screenHeight - 80) / 2),
-            width: screenWidth - 100,
-            height: screenHeight - 80)
+            width: screenWidth - 50,
+            height: screenHeight - 100
+        )
+        
+        let timingLabel = banerViewController.timingLabel!
+        banerViewController.view.addSubview(timingLabel)
+        timingLabel.translatesAutoresizingMaskIntoConstraints = false
+        timingLabel.alpha = 0
+
+        let titleLabel = banerViewController.titleLabel!
+        banerViewController.view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.alpha = 0
+        
+        let xMarkImageView = banerViewController.xMarkImageView!
+        banerViewController.view.addSubview(xMarkImageView)
+        xMarkImageView.translatesAutoresizingMaskIntoConstraints = false
+        xMarkImageView.alpha = 0
+        
+        let iconImageView = banerViewController.iconImageView!
+        banerViewController.view.addSubview(iconImageView)
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        iconImageView.alpha = 0
+        
+        let editLabel = banerViewController.editLabel!
+        banerViewController.view.addSubview(editLabel)
+        editLabel.translatesAutoresizingMaskIntoConstraints = false
+        editLabel.alpha = 0
         
         
-        let timingView = self.banerViewController.timingLabel!
-//        timingView.widthAnchor.constraint(equalToConstant: screenWidth - 80).isActive = true
-//        self.banerViewController.view.addSubview(timingView)
-        
-//        timingView.translatesAutoresizingMaskIntoConstraints = false
-//        timingView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
-//        timingView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 40).isActive = true
-//        timingView.topAnchor.constraint(equalTo: view.topAnchor, constant: 350).isActive = true
-//        timingView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        
-        
-        
-        
-//        banerImageView.addSubview(banerViewController.titleLabel)
-//        banerViewController.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-//        banerImageView.addSubview(banerViewController.iconImageView)
-//        banerImageView.addSubview(banerViewController.xmarkImageView)
-//        banerImageView.addSubview(banerViewController.editLabel)
-//        banerImageView.addSubview(banerViewController.profileImageView)
         
         
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
@@ -79,8 +84,8 @@ class ViewController: UIViewController {
         banerViewController.backImageView.isUserInteractionEnabled = true
         
         let xmarkTapGR = UITapGestureRecognizer(target: self, action: #selector(xmarkTaped(recognizer:)))
-        banerViewController.xmarkImageView.addGestureRecognizer(xmarkTapGR)
-        banerViewController.xmarkImageView.isUserInteractionEnabled = true
+        banerViewController.xMarkImageView.addGestureRecognizer(xmarkTapGR)
+        banerViewController.xMarkImageView.isUserInteractionEnabled = true
     }
     
     
@@ -147,7 +152,7 @@ class ViewController: UIViewController {
         
         switch recognizer.state {
         case .ended:
-            animateTransitionIfNeeded(state: nextStep, duration: 2)
+            animateTransitionIfNeeded(state: nextStep, duration: 0.2)
         default:
             break
         }
@@ -176,32 +181,73 @@ class ViewController: UIViewController {
             let banerAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
                 switch state {
                 case .expanded:
-                    NSLayoutConstraint.activate([
-                        self.banerViewController.backImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                        self.banerViewController.backImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                        self.banerViewController.backImageView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-                        self.banerViewController.backImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor)
-                    ])
+                    
+                    self.updateLayout()
+                    
+                    self.banerViewController.timingLabel.alpha = 1
                     self.banerViewController.backImageView.alpha = 1
+                    self.banerViewController.titleLabel.alpha = 1
+                    self.banerViewController.iconImageView.alpha = 1
+                    self.banerViewController.editLabel.alpha = 1
+                    self.banerViewController.xMarkImageView.alpha = 1
                 case .collapsed:
+                    self.banerViewController.timingLabel.alpha = 0
                     self.banerViewController.backImageView.alpha = 0
+                    self.banerViewController.titleLabel.alpha = 0
+                    self.banerViewController.iconImageView.alpha = 0
+                    self.banerViewController.editLabel.alpha = 0
+                    self.banerViewController.xMarkImageView.alpha = 0
                 }
-                self.view.layoutIfNeeded()
+                self.banerViewController.backImageView.layoutIfNeeded()
             }
             banerAnimator.startAnimation()
             runningAnimations.append(banerAnimator)
             
-//            let topButtonsAnimator = UIViewPropertyAnimator(duration: duration - 0.1, curve: .linear) {
+//            let buttonsAndLabelAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
 //                switch state {
 //                case .expanded:
-//                    print("")
+//                    self.banerViewController.timingLabel.alpha = 1
 //                case .collapsed:
 //                    print("")
 //                }
 //            }
-//            topButtonsAnimator.startAnimation()
-//            runningAnimations.append(topButtonsAnimator)
+//            buttonsAndLabelAnimator.startAnimation()
+//            runningAnimations.append(buttonsAndLabelAnimator)
         }
+    }
+    
+    private func updateLayout() {
+        NSLayoutConstraint.activate([
+            self.banerViewController.backImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.banerViewController.backImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.banerViewController.backImageView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            self.banerViewController.backImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            self.banerViewController.timingLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -400),
+            self.banerViewController.timingLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40)
+        ])
+        NSLayoutConstraint.activate([
+            self.banerViewController.titleLabel.bottomAnchor.constraint(equalTo: self.banerViewController.timingLabel.bottomAnchor, constant: -40),
+            self.banerViewController.titleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40),
+            self.banerViewController.titleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 40)
+        ])
+        NSLayoutConstraint.activate([
+            self.banerViewController.iconImageView.bottomAnchor.constraint(equalTo: self.banerViewController.titleLabel.bottomAnchor, constant: -80),
+            self.banerViewController.iconImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40),
+            self.banerViewController.iconImageView.widthAnchor.constraint(equalToConstant: 70),
+            self.banerViewController.iconImageView.heightAnchor.constraint(equalToConstant: 70)
+        ])
+        NSLayoutConstraint.activate([
+            self.banerViewController.editLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            self.banerViewController.editLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 40)
+        ])
+        NSLayoutConstraint.activate([
+            self.banerViewController.xMarkImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            self.banerViewController.xMarkImageView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -40),
+            self.banerViewController.xMarkImageView.widthAnchor.constraint(equalToConstant: 40),
+            self.banerViewController.xMarkImageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
     
