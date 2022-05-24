@@ -71,7 +71,7 @@ extension FeedViewController: TableViewCellDelegate {
             print("No data for card")
             return
         }
-        handleCardTap(recognizer: recognizer, card: card)
+        self.handleCardTap(recognizer: recognizer, card: card)
     }
     
    

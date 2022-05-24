@@ -40,15 +40,15 @@ class TableViewCell: UITableViewCell {
     
     
     @objc func detailsTaped(recognizer: UITapGestureRecognizer) {
-//        UIView.animate(withDuration: 0.2) {
-//            self.pictureImageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-//        } completion: { isFinished in
-//            if isFinished {
-//                UIView.animate(withDuration: 0.2) {
-//                    self.pictureImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-//                }
-//            }
-//        }
+        UIView.animate(withDuration: 0.2) {
+            self.pictureImageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        } completion: { isFinished in
+            if isFinished {
+                UIView.animate(withDuration: 0.2) {
+                    self.pictureImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                }
+            }
+        }
         delegate?.detailsPressed(indexPath: indexPath, recognizer: recognizer)
     }
     

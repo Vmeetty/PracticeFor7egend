@@ -153,7 +153,9 @@ class ViewController: UIViewController {
         
         switch recognizer.state {
         case .ended:
-            animateTransitionIfNeeded(state: nextStep, duration: 0.2)
+            Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
+                self.animateTransitionIfNeeded(state: self.nextStep, duration: 0.3)
+            }
         default:
             break
         }
