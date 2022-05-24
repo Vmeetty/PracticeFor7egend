@@ -7,13 +7,15 @@
 
 import UIKit
 
-class FeedViewController: ViewController {
+class FeedViewController: UIViewController {
     
     var cards = Manager.shared.fetchCards()
     
     @IBOutlet weak var tableView: UITableView!
     
     var indexPathSelected: IndexPath?
+    
+    let animationAndConfig = AnimationBrain.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +30,6 @@ class FeedViewController: ViewController {
         service.animateCellsFor(tableView: tableView, by: gesture)
     }
 }
-
-// CASH CELLS <<<<<<<<<<<<-------------------<<<<<<<<<-----------------
-// SHADOWS <<<<<<<<<<<<<-------------------<<<<<<<<<<<<<<<------------------
 
 
 
@@ -62,17 +61,20 @@ extension FeedViewController: UITableViewDataSource {
 }
 
 
-
 extension FeedViewController: TableViewCellDelegate {
     func detailsPressed(indexPath: IndexPath, recognizer: UITapGestureRecognizer) {
         guard let card = cards?[indexPath.row] else {
             print("No data for card")
             return
         }
-        handleCardTap(recognizer: recognizer, card: card)
         indexPathSelected = indexPath
+        
+        let banerVC = BanerViewController(nibName: K.NibName.banerNibName, bundle: nil)
+        let descriptionVC = DescriptionViewController(nibName: K.NibName.descNibName, bundle: nil)
+        animationAndConfig.setupView(sender: self, withBanerVC: banerVC, andDescriptionVC: descriptionVC)
+
+        animationAndConfig.populateDetails(ofCard: card)
+        animationAndConfig.handleCardTap(recognizer: recognizer)
     }
-    
-    
 }
 
