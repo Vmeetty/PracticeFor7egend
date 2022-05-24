@@ -123,6 +123,7 @@ class ViewController: UIViewController {
         switch recognizer.state {
         case .ended:
             animateTransitionIfNeeded(state: nextStep, duration: 0.5)
+            continueInteractionTransition(state: nextStep)
         default:
             break
         }
