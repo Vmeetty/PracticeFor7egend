@@ -22,7 +22,7 @@ struct K {
     struct Title {
         static let t1  = "Bukovel"
         static let t2  = "Carpathian"
-        static let t3  = "Magic Carpathians"
+        static let t3  = "Hoverla"
         static let t4  = "Carpathian ski"
         static let t5  = "Diletant Kiev"
         static let t6  = "Podol Kiev"
