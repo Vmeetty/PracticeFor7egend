@@ -23,8 +23,8 @@ struct Service {
 
         if gesture.translation(in: tableView).y < 0 {
             for (index, cell) in tableView.visibleCells.enumerated() {
-                guard let ip = tableView.indexPath(for: cell) else { return }
-                if ip.row > touchedCellIndex.row {
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
+                if indexPath.row > touchedCellIndex.row {
                     cell.transform = CGAffineTransform(translationX: 0.0, y: -gesture.velocity(in: tableView).y * 0.02 * tanh(CGFloat(index)))
                     UIView.animate(withDuration: 0.05 * Double(index), delay: 0.0) {
                         cell.transform = CGAffineTransform.identity
@@ -33,8 +33,8 @@ struct Service {
             }
         } else {
             for (index, cell) in tableView.visibleCells.reversed().enumerated() {
-                guard let ip = tableView.indexPath(for: cell) else { return }
-                if ip.row < touchedCellIndex.row {
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
+                if indexPath.row < touchedCellIndex.row {
                     cell.transform = CGAffineTransform(translationX: 0.0, y: -gesture.velocity(in: tableView).y * 0.02 * tanh(CGFloat(index)))
                     UIView.animate(withDuration: 0.05 * Double(index), delay: 0.0) {
                         cell.transform = CGAffineTransform.identity
